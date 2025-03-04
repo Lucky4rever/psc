@@ -2,9 +2,10 @@
 
 pragma solidity >=0.7.0 <0.9.0;
 
+import "./ISnihur.sol"; // Імпортуємо інтерфейс
 import "./SPV.sol";
 
-contract Snihur {
+contract Snihur is ISnihur { // Наслідуємо інтерфейс ISnihur
     using SPVLibrary for string;
     using SPVLibrary for int256;
 
@@ -16,9 +17,6 @@ contract Snihur {
     mapping(address => uint256) public deposits;
     address[] public approvedUserList;
     uint256 public constant AMOUNT = 9 ether;
-
-    event Approved(address indexed user);
-    event Withdrawn(address indexed user, uint256 amount);
 
     modifier onlyOwner() {
         require(msg.sender == owner, "Not the owner");
