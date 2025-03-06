@@ -32,8 +32,7 @@ contract Snihur is ISnihur {
     }
 
     function SPVApproveAndDeposit() external payable {
-        require(msg.sender != owner, "Owner should not be approved for his own contract");
-        require(msg.value == AMOUNT, "Incorrect deposit amount");
+        require(msg.value == AMOUNT, "Incorrect deposit amount. Should be 9 ETH");
         require(!approvedUsers[msg.sender], "Already approved");
 
         approvedUsers[msg.sender] = true;
@@ -68,8 +67,8 @@ contract Snihur is ISnihur {
         return input.SPVParsePrice();
     }
     
-    function SPVWeatherComment(int256 temp) public pure returns (string memory) {
-        return temp.SPVGetWeatherComment();
+    function SPVWeatherComment(int256 temperature) public pure returns (string memory) {
+        return temperature.SPVGetWeatherComment();
     }
 
 
